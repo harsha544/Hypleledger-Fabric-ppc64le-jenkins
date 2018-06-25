@@ -1,0 +1,37 @@
+/etc/init.d/docker stop
+set -o emacs
+
+apt autoremove -y
+
+apt remove -y docker-engine
+
+apt purge -y docker-engine
+
+apt remove -y docker-ce
+
+apt purge -y docker.io
+
+apt autoremove -y
+
+cd /tmp/
+wget https://download.docker.com/linux/ubuntu/dists/xenial/pool/stable/ppc64el/docker-ce_18.03.1~ce-0~ubuntu_ppc64el.deb
+
+apt remove -y libseccomp2
+
+apt-get -f -y install
+
+apt purge -y docker-ce 
+
+apt autoremove -y
+
+
+dpkg -i docker-ce_18.03.1~ce-0~ubuntu_ppc64el.deb
+
+apt-get -f -y install
+
+dpkg -i docker-ce_18.03.1~ce-0~ubuntu_ppc64el.deb
+
+/etc/init.d/docker start 
+docker version
+
+rm docker-ce_18.03.1~ce-0~ubuntu_ppc64el.deb
